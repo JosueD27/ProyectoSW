@@ -22,7 +22,7 @@ export class GetMytodolistComponent {
     }
 
     public usario={
-        idusuarios:this.service.get_session(),
+        idusuarios:this.service.get_session2(),
     }
 
     constructor(public service:AppService, private router: Router){
@@ -35,6 +35,13 @@ export class GetMytodolistComponent {
         //Add 'implements OnInit' to the class.
         this.get_listacompletada();
         this.get_listano();
+    }
+
+    
+
+    logout(){
+        this.service.reset_session();
+        this.router.navigateByUrl('/login');
     }
 
     get_listano(){
@@ -116,36 +123,7 @@ export class GetMytodolistComponent {
     }
 
     //inserta una nueva tarea
-    insertar_lista(){
-        var response;
-        var newtask={
-            idlista:'',
-            iduser:this.usario.idusuarios,
-            titulo:this.tareas.titulo,
-            descripcion:this.tareas.descripcion,
-            estado:0
-        }
-        this.service.insert_lista(newtask).subscribe(
-            data => response = data,
-            err => {
-                console.log("Ocurrio un error al llamar el servicio");
-                swal.fire({
-                    title:"La Tarea no Pudo Guardarse",
-                    icon:"warning"
-                  })
-            },
-            ()=>{
-                swal.fire({
-                    title:'Tarea Guardada',
-                    icon:'success'
-                })
-                this.get_listacompletada();
-                this.get_listano();
-                this.limpiar_tareas()
-            }
-        );
-    }
-
+    
     limpiar_tareas(){
         this.tareas={
             idlista:'',
@@ -178,5 +156,35 @@ export class GetMytodolistComponent {
             }
         )
         
+    }
+
+    insertar_lista(){
+        var response;
+        var newtask={
+            idlista:'',
+            iduser:this.usario.idusuarios,
+            titulo:this.tareas.titulo,
+            descripcion:this.tareas.descripcion,
+            estado:0
+        }
+        this.service.insert_lista(newtask).subscribe(
+            data => response = data,
+            err => {
+                console.log("Ocurrio un error al llamar el servicio");
+                swal.fire({
+                    title:"La Tarea no Pudo Guardarse",
+                    icon:"warning"
+                  })
+            },
+            ()=>{
+                swal.fire({
+                    title:'Tarea Guardada',
+                    icon:'success'
+                })
+                this.get_listacompletada();
+                this.get_listano();
+                this.limpiar_tareas()
+            }
+        );
     }
 }

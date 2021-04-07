@@ -1,26 +1,44 @@
+<br>
+<br>
+<br>
 <div align="center" class="login-content">
-    <h4 class="container text-primary"> Mi Todo List</h4>
+    <h1 class="container text-primary"> Mi Todo List</h1>
+    <br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
     <form #login_form="ngForm" class="margin-bottom-0" novalidate="novalidate" autocomplete="off">
         <div class="form-group m-b-20">
-            <input type="text" class="form-control form-control-lg inverse-mode login-input" placeholder="Usuario: Su ID"
+            <input type="text"  placeholder="Usuario: Su ID"
                 name="idusuarios" #idusuarios="ngModel" [(ngModel)]="login_data.idusuarios" required="true" />
             <p *ngIf="idusuarios.errors && idusuarios.errors.required && submitted" class="login-error-text"><i
                     class="fa fa-exclamation-circle login-error-icon"></i>El usuario es requerido</p>
         </div>
-        <div class="form-group m-b-20">
-            <input type="password" class="form-control form-control-lg inverse-mode login-input"
+        <div class="form-group mb-3">
+            <input type="password" 
                 placeholder="Contraseña" name="password" #password="ngModel" [(ngModel)]="login_data.password"
                 required="true" />
             <p *ngIf="password.errors && password.errors.required && submitted" class="login-error-text"><i
                     class="fa fa-exclamation-circle login-error-icon"></i>La contraseña es requerida</p>
         </div>
+
+ 
+
+
+
+
+
         <label for="chk1">
           Olvidó su Contraseña?
           <input type="checkbox" data-toggle="modal" data-target="#Recovery" id="chk1" value="">
         </label>
         <br>
         <div class="login-buttons">
-            <button (click)="login()" [disabled]="loading" type="submit" class="btn btn-info btn-lg">
+            <button (click)="login()" [disabled]="loading" type="submit" class="btn btn-success btn-lg">
                 <span *ngIf="!loading"><i class="fa fa-sign-in-alt"></i> Conectarse</span>
                 <span *ngIf="loading"><i class="fa fa-spin fa-spinner">Conectando...</i></span>
             </button>

@@ -34,17 +34,39 @@ import {HttpClient} from '@angular/common/http';
             return this.httpClient.post(this.endpoint + "/login", payload, {responseType: 'json'});
         }
         
+        
         set_session(token){
-            localStorage.setItem("token", JSON.stringify(token));
+            localStorage.setItem("usuarios", JSON.stringify(token));
         }
+        reset_session(){
+            localStorage.removeItem("usuarios");
+        }
+
 
         set_session2(idusuario){
             localStorage.setItem("usuario", idusuario);
         }
 
         get_session(){
-            return localStorage.getItem("usuario");
-        }
+            if(localStorage.getItem("usuarios")
+            && JSON.parse(localStorage.getItem("usuarios")).token
+            )
+            {
+return JSON.parse(localStorage.getItem("usuarios"));
+
+            }else {
+    return false;
+}
+            }
+
+            get_session2(){
+                return localStorage.getItem("usuario");
+            }
+
+
+
+           
+        
 
         insertar_usuario(load){
             return this.httpClient.post(this.endpoint+'/insert_usuario', load, {responseType: 'json'});

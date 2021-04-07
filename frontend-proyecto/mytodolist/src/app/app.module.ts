@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/login/login.component';
+import { loginguard } from './app.loginguard';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './views/login/login.component';
     FormsModule
   ],
   providers: [
-    AppService
+    AppService,
+    loginguard
   ],
   bootstrap: [AppComponent]
 })
