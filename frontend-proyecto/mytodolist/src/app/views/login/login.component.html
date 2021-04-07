@@ -1,0 +1,148 @@
+<div align="center" class="login-content">
+    <h4 class="container text-primary"> Mi Todo List</h4>
+    <form #login_form="ngForm" class="margin-bottom-0" novalidate="novalidate" autocomplete="off">
+        <div class="form-group m-b-20">
+            <input type="text" class="form-control form-control-lg inverse-mode login-input" placeholder="Usuario: Su ID"
+                name="idusuarios" #idusuarios="ngModel" [(ngModel)]="login_data.idusuarios" required="true" />
+            <p *ngIf="idusuarios.errors && idusuarios.errors.required && submitted" class="login-error-text"><i
+                    class="fa fa-exclamation-circle login-error-icon"></i>El usuario es requerido</p>
+        </div>
+        <div class="form-group m-b-20">
+            <input type="password" class="form-control form-control-lg inverse-mode login-input"
+                placeholder="Contraseña" name="password" #password="ngModel" [(ngModel)]="login_data.password"
+                required="true" />
+            <p *ngIf="password.errors && password.errors.required && submitted" class="login-error-text"><i
+                    class="fa fa-exclamation-circle login-error-icon"></i>La contraseña es requerida</p>
+        </div>
+        <label for="chk1">
+          Olvidó su Contraseña?
+          <input type="checkbox" data-toggle="modal" data-target="#Recovery" id="chk1" value="">
+        </label>
+        <br>
+        <div class="login-buttons">
+            <button (click)="login()" [disabled]="loading" type="submit" class="btn btn-info btn-lg">
+                <span *ngIf="!loading"><i class="fa fa-sign-in-alt"></i> Conectarse</span>
+                <span *ngIf="loading"><i class="fa fa-spin fa-spinner">Conectando...</i></span>
+            </button>
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-info btn-lg"
+            data-toggle="modal" data-target="#NuevoModal">Registrarse</button>
+        </div>
+        <br>
+    </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="NuevoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nueva Usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form ngNativeValidate #form>
+              
+              <div class="form-group">
+                <label for="txtidusuarios">ID:</label>
+                <input type="text" class="form-control" 
+                      id="txtidusuarios" placeholder="Introduzca su ID ejemplo: 0801199703773"
+                      [(ngModel)]="usuario.idusuarios" [ngModelOptions]="{standalone:true}"
+                      required="true"
+                      minlength="13"
+                      maxlength="13"
+                      pattern="[0-9]">
+              </div>
+
+              <div class="form-group">
+                <label for="txtnombre">Nombre:</label>
+                <input type="text" class="form-control" 
+                      id="txtnombre" placeholder="Introduzca su Nombre"
+                      [(ngModel)]="usuario.nombre" [ngModelOptions]="{standalone:true}"
+                      required="true"
+                      minlength="3"
+                      maxlength="45"
+                      pattern="[a-zA-Z ]">
+              </div>
+
+              <div class="form-group">
+                <label for="txtapellido">Apellido:</label>
+                <input type="text" class="form-control" 
+                      id="txtapellido" placeholder="Introduzca su apellido"
+                      [(ngModel)]="usuario.apellido" [ngModelOptions]="{standalone:true}"
+                      required="true"
+                      minlength="3"
+                      maxlength="45"
+                      pattern="[a-zA-Z ]">
+              </div>
+
+              <div class="form-group">
+                <label for="txtpassword">Contraseña:</label>
+                <input type="password" class="form-control" 
+                      id="txtpassword" placeholder="Introduzca su Contraseña"
+                      [(ngModel)]="usuario.password" [ngModelOptions]="{standalone:true}"
+                      required="true"
+                      minlength="8"
+                      maxlength="20">
+              </div>
+
+              <div class="form-group">
+                <label for="txtcorreo">Correo:</label>
+                <input type="email" class="form-control" 
+                      id="txtcorreo" placeholder="Introduzca su Correo"
+                      [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone:true}"
+                      required="true"
+                      maxlength="45"
+                      pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+              </div>
+
+            </form>
+          </div>
+          <p>Debera de esperar en esta pantalla hasta que salga un mensaje despues de darle click en guardar</p>
+          <div class="modal-footer">
+            <button (click)="insertar_ususario()" 
+            type="button" class="btn btn-primary" >Guardar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="Recovery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Recuperar Contraseña</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form ngNativeValidate #form>
+              
+              <div class="form-group">
+                <label for="txtcorreo2">Correo:</label>
+                <input type="email" class="form-control" 
+                      id="txtcorreo2" placeholder="Introduzca su Correo"
+                      [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone:true}"
+                      required="true"
+                      maxlength="45"
+                      pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button (click)="recover()" 
+            type="button" class="btn btn-primary" >Enviar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
