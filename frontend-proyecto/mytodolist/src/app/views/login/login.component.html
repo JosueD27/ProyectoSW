@@ -1,62 +1,46 @@
-<br>
-<br>
-<br>
 <div align="center" class="login-content">
-    <h1 class="container text-primary"> Mi Todo List</h1>
+    <h1 class="container text-primary"> Mi To Do List</h1>
+
+  <form #login_form="ngForm" class="margin-bottom-0" novalidate="novalidate" autocomplete="off">
+    <div class="form-group m-b-20">
+      <input type="text" class="form-control" placeholder="Usuario: Su ID"
+        name="idusuarios" #idusuarios="ngModel" [(ngModel)]="login_data.idusuarios" required="true" />
+        <p *ngIf="idusuarios.errors && idusuarios.errors.required && submitted" class="login-error-text"><i
+        class="fa fa-exclamation-circle login-error-icon"></i>El usuario es requerido</p>
+    </div>
+    <div class="form-group mb-3">
+      <input type="password" class="form-control" 
+        placeholder="Contraseña" name="password" #password="ngModel" [(ngModel)]="login_data.password"
+        required="true" />
+        <p *ngIf="password.errors && password.errors.required && submitted" class="login-error-text"><i
+        class="fa fa-exclamation-circle login-error-icon"></i>La contraseña es requerida</p>
+    </div>
+
+    <label for="chk1">
+      ¿Olvidó su Contraseña?
+    <input type="checkbox" data-toggle="modal" data-target="#Recovery" id="chk1" value="">
+    </label>
     <br>
-
-<br>
-<br>
-<br>
-
-<br>
-<br>
-    <form #login_form="ngForm" class="margin-bottom-0" novalidate="novalidate" autocomplete="off">
-        <div class="form-group m-b-20">
-            <input type="text"  placeholder="Usuario: Su ID"
-                name="idusuarios" #idusuarios="ngModel" [(ngModel)]="login_data.idusuarios" required="true" />
-            <p *ngIf="idusuarios.errors && idusuarios.errors.required && submitted" class="login-error-text"><i
-                    class="fa fa-exclamation-circle login-error-icon"></i>El usuario es requerido</p>
-        </div>
-        <div class="form-group mb-3">
-            <input type="password" 
-                placeholder="Contraseña" name="password" #password="ngModel" [(ngModel)]="login_data.password"
-                required="true" />
-            <p *ngIf="password.errors && password.errors.required && submitted" class="login-error-text"><i
-                    class="fa fa-exclamation-circle login-error-icon"></i>La contraseña es requerida</p>
-        </div>
-
- 
-
-
-
-
-
-        <label for="chk1">
-          Olvidó su Contraseña?
-          <input type="checkbox" data-toggle="modal" data-target="#Recovery" id="chk1" value="">
-        </label>
-        <br>
-        <div class="login-buttons">
-            <button (click)="login()" [disabled]="loading" type="submit" class="btn btn-success btn-lg">
-                <span *ngIf="!loading"><i class="fa fa-sign-in-alt"></i> Conectarse</span>
-                <span *ngIf="loading"><i class="fa fa-spin fa-spinner">Conectando...</i></span>
-            </button>
-        </div>
-        <br>
-        <div class="d-flex justify-content-center">
-            <button class="btn btn-info btn-lg"
-            data-toggle="modal" data-target="#NuevoModal">Registrarse</button>
-        </div>
-        <br>
-    </form>
+    <div class="login-buttons">
+      <button (click)="login()" [disabled]="loading" type="submit" class="btn btn-success btn-lg">
+        <span *ngIf="!loading"><i class="fa fa-sign-in-alt"></i> Conectarse</span>
+        <span *ngIf="loading"><i class="fa fa-spin fa-spinner">Conectando...</i></span>
+      </button>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-info btn-lg"
+        data-toggle="modal" data-target="#NuevoModal">Registrarse</button>
+    </div>
+    <br>
+  </form>
 
     <!-- Modal -->
     <div class="modal fade" id="NuevoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Nueva Usuario</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -67,7 +51,7 @@
               <div class="form-group">
                 <label for="txtidusuarios">ID:</label>
                 <input type="text" class="form-control" 
-                      id="txtidusuarios" placeholder="Introduzca su ID ejemplo: 0801199703773"
+                      id="txtidusuarios" placeholder="Introduzca su ID ejemplo: 0801199601862"
                       [(ngModel)]="usuario.idusuarios" [ngModelOptions]="{standalone:true}"
                       required="true"
                       minlength="13"

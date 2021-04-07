@@ -1,15 +1,14 @@
-
-<div class="container-fluid">
+<div align="center" class="container-fluid">
     <h1 class="text-info text-center">My To Do List</h1>
     <br>
     <div class="hola">
-    <h3 class="text-danger">Lista de Pendientes</h3>
+    <h3 class="text-danger">Lista de Tareas Pendientes</h3>
 
     <table class="table table-striped table-hover table-bordered table-warning">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Titulo</th>
-          <th scope="col">Descripcion</th>
+          <th scope="col">Título</th>
+          <th scope="col">Descripción</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -23,7 +22,7 @@
           <td>
             <label for="chk1{{lp.idlista}}">
               <input type="checkbox" (click)="listaestado(lp.idlista)" id="chk1+{{lp.idlista}}" value="{{lp.idlista}}">
-              Concluido?
+              ¿Concluído?
             </label>
           </td>
         </tr>
@@ -38,13 +37,13 @@
       data-toggle="modal" data-target="#NuevoModal">Nueva Tarea</button>
     </div>
     <br>
-    <h3 class="text-success">Lista de Pendientes Terminados</h3>
+    <h3 class="text-success">Lista de Tareas Terminadas</h3>
     <table class="table table-striped table-hover table-bordered table-warning
     ">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Titulo</th>
-          <th scope="col">Descripcion</th>
+          <th scope="col">Título</th>
+          <th scope="col">Descripción</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -58,7 +57,7 @@
           <td>
             <label for="chk1{{lf.idlista}}">
               <input type="checkbox" (click)="listaestado2(lf.idlista)" id="chk1+{{lf.idlista}}" value="{{lf.idlista}}">
-              Aun Pendiente?
+              ¿Aún Pendiente?
             </label>
           </td>
         </tr>
@@ -79,9 +78,9 @@
             <form ngNativeValidate #form>
               
               <div class="form-group">
-                <label for="txttitulo">Titulo:</label>
+                <label for="txttitulo">Título:</label>
                 <input type="text" class="form-control" 
-                      id="txttitulo" placeholder="Introduzca el titulo de su nueva tarea"
+                      id="txttitulo" placeholder="Introduzca el título de su nueva tarea"
                       [(ngModel)]="tareas.titulo" [ngModelOptions]="{standalone:true}"
                       required="true"
                       maxlength="45"
@@ -89,7 +88,7 @@
               </div>
 
               <div class="form-group">
-                <label for="txtdescripcion">Descripcion:</label>
+                <label for="txtdescripcion">Descripción:</label>
                 <textarea name="txtdescripcion" id="txtdescripcion"
                 class="md-textarea md-textarea-auto form-control"
                 [(ngModel)]="tareas.descripcion" [ngModelOptions]="{standalone:true}"
@@ -109,6 +108,7 @@
         </div>
       </div>
     </div>
+    <br>
     <br>
     <div class="d-flex justify-content-center">
       <button (click)="logout()" class="btn btn-outline-danger btn-lg">Salir</button>

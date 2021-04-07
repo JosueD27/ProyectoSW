@@ -1,15 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+
 .hola{
-     
- display:inline-block;
+    display:inline-block;
     width: 80%;
-    margin-left: 200px;
     text-align: center;
-  
-    
 }
 
+.login-content{
+    background-color: lightgray;
+    font-family: 'Helvetica Neue';
+    height: 100%;
+    width: 100%;
+    position:absolute;
+}
 
-.body{
-background-color: gray;
+.m-b-20{
+    margin-top: 50px;
+    width: 540px;
+}
+
+.mb-3{
+    width: 540px;
+}
+
+.login-buttons{
+    margin-top: 40px;
+}
+
+.d-flex{
+    margin-top: 10px;
+}
+
+.container-fluid{
+    background-color: lightgray;
+    font-family: 'Helvetica Neue';
+    position: absolute;
+    height: 100%;
 }
