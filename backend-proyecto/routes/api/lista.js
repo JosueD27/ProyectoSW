@@ -146,6 +146,30 @@ router.put('/update_listaestado', (req, res, next) => {
     });
 });
 
+
+
+
+
+
+router.put('/update_lista', (req, res, next) => {
+    var query = "update baselista.lista set titulo=?,descripcion=? where idlista=?";
+    var value = [req.body.titulo,
+                 req.body.descripcion,
+                req.body.idlista];
+    con.query(query, value,  (err, result, field) => {
+        if(err){
+            next(err);
+        }
+        else{
+            res.status(200).json(result);
+        }
+    });
+});
+
+
+
+
+
 //Guardamos al ususario logueado
 router.put('/update_logueo', (req, res, next) => {
     var query = "update baselista.logeo set usuario = ? where id=1";
@@ -173,6 +197,36 @@ router.get('/get_ususario', (req,res,next)=>{
         }
     });
 });
+
+
+router.get('/get_nombre', (req,res,next)=>{
+    var query = "SELECT nombre FROM baselista.usuarios where idusuarios=?";
+    var value = [req.query.idusuarios];
+    con.query(query,value, (err, result, field)=>{
+        if(err){
+            next(err);
+        }
+        else{
+            res.status(200).json(result);
+        }
+    });
+});
+
+
+router.delete('/delete_tarea', (req, res, next) => {
+    var query = 'delete from baselista.lista where idlista = ?';
+    
+    var values = [req.query.idlista];
+
+    con.query(query, values, (err, result, field) => {
+       if(err){
+           next(err);
+       } else {
+           res.status(200).json(result)
+       }
+      });
+});
+
 
 //Obtenemos la descripcion del Usuario
 router.get('/get_descripcion', (req,res,next)=>{
