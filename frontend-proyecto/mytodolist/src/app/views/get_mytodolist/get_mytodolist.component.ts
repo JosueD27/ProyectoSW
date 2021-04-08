@@ -135,7 +135,7 @@ export class GetMytodolistComponent {
             },
             ()=>{            
                 swal.fire({
-                    title:'Tarea actilizada',
+                    title:'Tarea actualizada',
                     icon:'success'
                 })   
                 this.get_listano();
@@ -274,6 +274,7 @@ export class GetMytodolistComponent {
                     icon:'success'
                 })         
                 this.get_listacompletada();
+                this.get_listano();
             }
         )
      }
