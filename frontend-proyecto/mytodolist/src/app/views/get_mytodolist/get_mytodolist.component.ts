@@ -134,7 +134,10 @@ export class GetMytodolistComponent {
                 console.log("Error al consultar el servicio");
             },
             ()=>{            
-                
+                swal.fire({
+                    title:'Tarea actilizada',
+                    icon:'success'
+                })   
                 this.get_listano();
             }
         )
@@ -265,8 +268,12 @@ export class GetMytodolistComponent {
             err => {
                 console.log("Error al consultar el servicio");
             },
-            ()=>{            
-                
+            ()=>{   
+                swal.fire({
+                    title:'Tarea Eliminada',
+                    icon:'success'
+                })         
+                this.get_listacompletada();
             }
         )
      }
