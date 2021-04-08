@@ -71,7 +71,9 @@ return JSON.parse(localStorage.getItem("usuarios"));
         insertar_usuario(load){
             return this.httpClient.post(this.endpoint+'/insert_usuario', load, {responseType: 'json'});
         }
-
+        get_nombre(load){
+            return this.httpClient.get(this.endpoint+'/get_nombre', {params: load, responseType: 'json'});
+        }
         get_descripcion(load){
             return this.httpClient.get(this.endpoint+'/get_descripcion', {params: load, responseType: 'json'});
         }
@@ -82,5 +84,18 @@ return JSON.parse(localStorage.getItem("usuarios"));
         
         recovery(load){
             return this.httpClient.post(this.endpoint+'/correo', load, {responseType: 'json'});
+        }
+
+        delete_tarea(load): Observable<any> {
+            return this.httpClient.delete(this.endpoint + "/delete_tarea", {
+                params: load,
+                responseType: 'json'
+            });
+        }
+
+
+        update_lista(load): Observable<any> {
+            return this.httpClient.put(this.endpoint + "/update_lista", load,
+                { responseType: 'json' })
         }
     }

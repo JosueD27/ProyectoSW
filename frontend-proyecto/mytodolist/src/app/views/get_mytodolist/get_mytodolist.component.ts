@@ -13,12 +13,14 @@ import { Router } from '@angular/router';
 export class GetMytodolistComponent {
     public listado_pendiente: any[];
     public listado_finalizado: any[];
+    public listado_nombre: any[];
     public tareas={
         idlista:'',
         iduser:'',
         titulo:'',
         descripcion:'',
-        estado:''
+        estado:'',
+       
     }
 
     public usario={
@@ -28,6 +30,7 @@ export class GetMytodolistComponent {
     constructor(public service:AppService, private router: Router){
         this.listado_pendiente=[];
         this.listado_finalizado=[];
+        this.listado_nombre=[];
     }
 
     ngOnInit(): void {
@@ -122,6 +125,21 @@ export class GetMytodolistComponent {
         )
     }
 
+
+    update_lista(){
+        var response;
+        this.service.update_lista(this.tareas).subscribe(
+            data=>response=data,
+            err => {
+                console.log("Error al consultar el servicio");
+            },
+            ()=>{            
+                
+                this.get_listano();
+            }
+        )
+    
+     }
     //inserta una nueva tarea
     
     limpiar_tareas(){
@@ -155,8 +173,39 @@ export class GetMytodolistComponent {
                 })
             }
         )
+
+
+
+        
         
     }
+
+
+    mostrar_nombre(){
+        var response
+        var iduser=this.usario.idusuarios
+            
+        
+        this.service.get_nombre(iduser).subscribe(
+            data => response = data,
+            err => {
+                console.log("Ocurrio un error al llamar el servicio");
+            },
+            ()=>{
+                swal.fire({
+                    title:response[0].descripcion,
+                    icon:'info'
+                })
+            }
+        )
+
+
+
+        
+        
+    }
+
+
 
     insertar_lista(){
         var response;
@@ -187,4 +236,44 @@ export class GetMytodolistComponent {
             }
         );
     }
+
+
+
+    
+
+
+
+     getDatosVehiculosForm(lp){
+        this.tareas = {
+            idlista: lp.idlista,
+            iduser: lp.iduser,
+            titulo: lp.titulo,
+            descripcion: lp.descripcion,
+            estado: lp.estado
+        }
+    }
+
+
+
+    delete_tarea(idlista){
+        var response;
+        var load={
+            idlista:idlista
+        }
+        this.service.delete_tarea(load).subscribe(
+            data=>response=data,
+            err => {
+                console.log("Error al consultar el servicio");
+            },
+            ()=>{            
+                
+            }
+        )
+     }
+
+
+
+
+
+
 }
